@@ -1,0 +1,26 @@
+import type { HebrewLetter } from "@/types";
+
+export const ALPHABET: HebrewLetter[] = [
+  { id: "aleph",  letter: "א", name: "אָלֶף",  nameRomanized: "Aleph",  phonetic: "silent/a", ttsPhrase: "א, אָלֶף",  color: "bg-red-400",     position: 1  },
+  { id: "bet",    letter: "ב", name: "בֵּית",   nameRomanized: "Bet",    phonetic: "b",        ttsPhrase: "ב, בֵּית",   color: "bg-orange-400",  position: 2  },
+  { id: "gimel",  letter: "ג", name: "גִּימֶל", nameRomanized: "Gimel",  phonetic: "g",        ttsPhrase: "ג, גִּימֶל", color: "bg-amber-400",   position: 3  },
+  { id: "dalet",  letter: "ד", name: "דָּלֶת",  nameRomanized: "Dalet",  phonetic: "d",        ttsPhrase: "ד, דָּלֶת",  color: "bg-yellow-400",  position: 4  },
+  { id: "he",     letter: "ה", name: "הֵא",     nameRomanized: "He",     phonetic: "h",        ttsPhrase: "ה, הֵא",     color: "bg-lime-400",    position: 5  },
+  { id: "vav",    letter: "ו", name: "וָאו",    nameRomanized: "Vav",    phonetic: "v",        ttsPhrase: "ו, וָאו",    color: "bg-green-400",   position: 6  },
+  { id: "zayin",  letter: "ז", name: "זַיִן",   nameRomanized: "Zayin",  phonetic: "z",        ttsPhrase: "ז, זַיִן",   color: "bg-teal-400",    position: 7  },
+  { id: "chet",   letter: "ח", name: "חֵת",     nameRomanized: "Chet",   phonetic: "ch",       ttsPhrase: "ח, חֵת",     color: "bg-cyan-400",    position: 8  },
+  { id: "tet",    letter: "ט", name: "טֵת",     nameRomanized: "Tet",    phonetic: "t",        ttsPhrase: "ט, טֵת",     color: "bg-sky-400",     position: 9  },
+  { id: "yod",    letter: "י", name: "יוֹד",    nameRomanized: "Yod",    phonetic: "y",        ttsPhrase: "י, יוֹד",    color: "bg-blue-400",    position: 10 },
+  { id: "kaf",    letter: "כ", name: "כַּף",    nameRomanized: "Kaf",    phonetic: "k",        ttsPhrase: "כ, כַּף",    color: "bg-indigo-400",  position: 11 },
+  { id: "lamed",  letter: "ל", name: "לָמֶד",   nameRomanized: "Lamed",  phonetic: "l",        ttsPhrase: "ל, לָמֶד",   color: "bg-violet-400",  position: 12 },
+  { id: "mem",    letter: "מ", name: "מֵם",     nameRomanized: "Mem",    phonetic: "m",        ttsPhrase: "מ, מֵם",     color: "bg-purple-400",  position: 13 },
+  { id: "nun",    letter: "נ", name: "נוּן",    nameRomanized: "Nun",    phonetic: "n",        ttsPhrase: "נ, נוּן",    color: "bg-fuchsia-400", position: 14 },
+  { id: "samech", letter: "ס", name: "סָמֶך",   nameRomanized: "Samech", phonetic: "s",        ttsPhrase: "ס, סָמֶך",   color: "bg-pink-400",    position: 15 },
+  { id: "ayin",   letter: "ע", name: "עַיִן",   nameRomanized: "Ayin",   phonetic: "silent",   ttsPhrase: "ע, עַיִן",   color: "bg-rose-400",    position: 16 },
+  { id: "pe",     letter: "פ", name: "פֵּא",    nameRomanized: "Pe",     phonetic: "p",        ttsPhrase: "פ, פֵּא",    color: "bg-red-500",     position: 17 },
+  { id: "tsadi",  letter: "צ", name: "צַדִּי",  nameRomanized: "Tsadi",  phonetic: "ts",       ttsPhrase: "צ, צַדִּי",  color: "bg-orange-500",  position: 18 },
+  { id: "qof",    letter: "ק", name: "קוֹף",    nameRomanized: "Qof",    phonetic: "k",        ttsPhrase: "ק, קוֹף",    color: "bg-amber-500",   position: 19 },
+  { id: "resh",   letter: "ר", name: "רֵישׁ",   nameRomanized: "Resh",   phonetic: "r",        ttsPhrase: "ר, רֵישׁ",   color: "bg-yellow-500",  position: 20 },
+  { id: "shin",   letter: "ש", name: "שִׁין",   nameRomanized: "Shin",   phonetic: "sh",       ttsPhrase: "ש, שִׁין",   color: "bg-lime-500",    position: 21 },
+  { id: "tav",    letter: "ת", name: "תָּו",    nameRomanized: "Tav",    phonetic: "t",        ttsPhrase: "ת, תָּו",    color: "bg-green-500",   position: 22 },
+];
