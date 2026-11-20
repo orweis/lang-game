@@ -33,6 +33,10 @@ jobs:
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
+      # Advisory only: new upstream advisories should not turn CI red without a
+      # code change. Dependabot opens PRs for fixable issues.
       - run: npm audit --omit=dev --audit-level=high
-      # next/font downloads the Heebo font from Google Fonts during the build.
+        continue-on-error: true
+      # next/font downloads the Heebo font from Google Fonts during the build,
+      # so a transient network error there can fail this step; re-run the job.
       - run: npm run build

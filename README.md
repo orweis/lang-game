@@ -142,7 +142,9 @@ adds its own headers, check that the two sets do not conflict. See
 Version 1.0.0 moved to new major versions of the framework and tooling. The
 game itself behaves the same, but your development setup has to change:
 
-- **Node.js 22.12+** is required (was 18.17+).
+- **Node.js 22.12+** is required (was 18.17+). The floor comes from the dev
+  tooling (Vitest); Next.js 16 itself only needs Node 20.9+, so a pre-built app
+  can still run on Node 20.9+ if you need it to.
 - **Next.js 16 and React 19** (were Next 14 and React 18). Custom code that
   relied on React 18-only APIs needs updating.
 - **ESLint 9 flat config**: `.eslintrc.json` is replaced by
