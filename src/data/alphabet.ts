@@ -1,6 +1,6 @@
 import type { HebrewLetter } from "@/types";
 
-export const ALPHABET: HebrewLetter[] = [
+export const ALPHABET: readonly HebrewLetter[] = [
   { id: "aleph",  letter: "א", name: "אָלֶף",  nameRomanized: "Aleph",  phonetic: "silent/a", ttsPhrase: "א, אָלֶף",  color: "bg-red-400",     position: 1  },
   { id: "bet",    letter: "ב", name: "בֵּית",   nameRomanized: "Bet",    phonetic: "b",        ttsPhrase: "ב, בֵּית",   color: "bg-orange-400",  position: 2  },
   { id: "gimel",  letter: "ג", name: "גִּימֶל", nameRomanized: "Gimel",  phonetic: "g",        ttsPhrase: "ג, גִּימֶל", color: "bg-amber-400",   position: 3  },

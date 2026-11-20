@@ -1,12 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
-import type { HebrewLetter, HebrewWord } from "@/types";
+import type { HebrewLetter, QuizChoiceItem } from "@/types";
 import { cn } from "@/lib/utils";
 
-type ChoiceState = "idle" | "correct" | "wrong";
+export type ChoiceState = "idle" | "correct" | "wrong";
 
 interface QuizChoiceProps {
-  choice: HebrewLetter | HebrewWord;
+  choice: QuizChoiceItem;
   state: ChoiceState;
   onClick: () => void;
   showAs: "letter" | "word" | "name";
@@ -18,10 +18,11 @@ const STATE_CLASSES: Record<ChoiceState, string> = {
   wrong: "bg-red-300 border-red-400 text-red-900",
 };
 
-function isLetter(c: HebrewLetter | HebrewWord): c is HebrewLetter {
+function isLetter(c: QuizChoiceItem): c is HebrewLetter {
   return "letter" in c;
 }
 
+/** One answer button in the quiz, showing a letter, a letter name or a word. */
 export function QuizChoice({ choice, state, onClick, showAs }: QuizChoiceProps) {
   const content = () => {
     if (showAs === "letter" && isLetter(choice)) {
@@ -37,7 +38,9 @@ export function QuizChoice({ choice, state, onClick, showAs }: QuizChoiceProps) 
     if (showAs === "word" && !isLetter(choice)) {
       return (
         <div className="flex flex-col items-center gap-1">
-          <span className="text-4xl">{choice.emoji}</span>
+          <span className="text-4xl" aria-hidden>
+            {choice.emoji}
+          </span>
           <span className="text-2xl font-bold">{choice.word}</span>
         </div>
       );
@@ -47,7 +50,9 @@ export function QuizChoice({ choice, state, onClick, showAs }: QuizChoiceProps) 
 
   return (
     <motion.button
+      type="button"
       onClick={onClick}
+      data-state={state}
       disabled={state !== "idle"}
       animate={
         state === "wrong"
@@ -68,7 +73,11 @@ export function QuizChoice({ choice, state, onClick, showAs }: QuizChoiceProps) 
       )}
     >
       {content()}
-      {state === "correct" && <span className="ml-2 text-3xl">✓</span>}
+      {state === "correct" && (
+        <span className="ml-2 text-3xl" aria-hidden>
+          ✓
+        </span>
+      )}
     </motion.button>
   );
 }

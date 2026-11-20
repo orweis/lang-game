@@ -44,7 +44,9 @@ export function HomeScreen() {
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
         className="text-center mb-12"
       >
-        <div className="text-7xl mb-3">🌟</div>
+        <div className="text-7xl mb-3" aria-hidden>
+          🌟
+        </div>
         <h1 className="text-5xl font-black text-slate-800 leading-tight">
           לומדים עברית!
         </h1>
@@ -74,7 +76,9 @@ export function HomeScreen() {
               className={`flex flex-col items-center justify-center gap-3 w-full min-h-[160px] rounded-3xl shadow-lg ${mode.bg} ${mode.hover} transition-colors duration-150 p-6`}
               aria-label={mode.label}
             >
-              <span className="text-6xl">{mode.emoji}</span>
+              <span className="text-6xl" aria-hidden>
+                {mode.emoji}
+              </span>
               <span className="text-3xl font-black text-white">{mode.label}</span>
               <span className="text-lg font-bold text-white/80">{mode.sublabel}</span>
             </Link>

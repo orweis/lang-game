@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { STRINGS } from "@/lib/strings";
 
 export function BackButton() {
   return (
@@ -10,10 +11,10 @@ export function BackButton() {
     >
       <Link
         href="/"
-        aria-label="חזור לתפריט הראשי"
+        aria-label={STRINGS.backToMenu}
         className="flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-lg text-3xl select-none"
       >
-        🏠
+        <span aria-hidden>🏠</span>
       </Link>
     </motion.div>
   );
