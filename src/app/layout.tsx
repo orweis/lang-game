@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Heebo } from "next/font/google";
 import "./globals.css";
 
+// next/font downloads Heebo at build time and serves it from the app itself,
+// so no request goes to Google when the game is played.
 const heebo = Heebo({
   subsets: ["hebrew"],
   weight: ["400", "700", "900"],
@@ -14,16 +16,19 @@ export const metadata: Metadata = {
   description: "Hebrew alphabet learning game for toddlers",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#e0f2fe",
+};
+
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="he" dir="rtl">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-      </head>
       <body className={`${heebo.variable} font-heebo select-none antialiased`}>
         {children}
       </body>

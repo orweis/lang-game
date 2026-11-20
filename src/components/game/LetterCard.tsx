@@ -9,10 +9,13 @@ interface LetterCardProps {
   onClick: () => void;
 }
 
+/** A tappable letter tile in the alphabet explorer. */
 export function LetterCard({ letter, isPlaying, onClick }: LetterCardProps) {
   return (
     <motion.button
+      type="button"
       onClick={onClick}
+      aria-pressed={isPlaying}
       aria-label={`${letter.nameRomanized} - ${letter.name}`}
       whileTap={{ scale: 0.88 }}
       animate={isPlaying ? { scale: 1.15 } : { scale: 1 }}

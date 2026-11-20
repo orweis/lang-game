@@ -1,6 +1,6 @@
 import type { HebrewWord } from "@/types";
 
-export const WORDS: HebrewWord[] = [
+export const WORDS: readonly HebrewWord[] = [
   { id: "cat",    word: "חָתוּל",   meaning: "Cat",    ttsPhrase: "חָתוּל",   emoji: "🐱", category: "animal", firstLetter: "chet"   },
   { id: "dog",    word: "כֶּלֶב",   meaning: "Dog",    ttsPhrase: "כֶּלֶב",   emoji: "🐶", category: "animal", firstLetter: "kaf"    },
   { id: "fish",   word: "דָּג",     meaning: "Fish",   ttsPhrase: "דָּג",     emoji: "🐟", category: "animal", firstLetter: "dalet"  },

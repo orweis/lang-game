@@ -5,6 +5,9 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    // Letter card colours are Tailwind classes stored in the data files.
+    "./src/data/**/*.{js,ts}",
+    "./src/lib/**/*.{js,ts}",
   ],
   theme: {
     extend: {

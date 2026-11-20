@@ -5,20 +5,26 @@ import { LetterCard } from "./LetterCard";
 import { BigButton } from "@/components/ui/BigButton";
 import { useAudio } from "@/hooks/useAudio";
 import { ALPHABET } from "@/data";
+import { TIMING } from "@/lib/constants";
+import { STRINGS } from "@/lib/strings";
+import type { HebrewLetter } from "@/types";
 
+/**
+ * The alphabet explorer: tap a letter to hear it, or play all 22 letters in
+ * order. While "play all" runs, single taps are ignored.
+ */
 export function AlphabetGrid() {
-  const { speak, isSpeaking } = useAudio();
+  const { speak, stop, isSpeaking } = useAudio();
   const [playingId, setPlayingId] = useState<string | null>(null);
   const [isPlayingAll, setIsPlayingAll] = useState(false);
-  const playAllRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const playAllIdxRef = useRef(0);
+  const playAllTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleLetterTap = (id: string, ttsPhrase: string) => {
-    if (isPlayingAll) return;
-    setPlayingId(id);
-    speak(ttsPhrase);
+  const clearPlayAllTimer = () => {
+    if (playAllTimer.current) clearTimeout(playAllTimer.current);
+    playAllTimer.current = null;
   };
 
+  // Clear the highlight shortly after a single letter finishes speaking.
   useEffect(() => {
     if (!isSpeaking && playingId && !isPlayingAll) {
       const t = setTimeout(() => setPlayingId(null), 300);
@@ -26,13 +32,15 @@ export function AlphabetGrid() {
     }
   }, [isSpeaking, playingId, isPlayingAll]);
 
-  const startPlayAll = () => {
-    setIsPlayingAll(true);
-    playAllIdxRef.current = 0;
-    playNext(0);
+  useEffect(() => clearPlayAllTimer, []);
+
+  const handleLetterTap = (letter: HebrewLetter) => {
+    if (isPlayingAll) return;
+    setPlayingId(letter.id);
+    speak(letter.ttsPhrase);
   };
 
-  const playNext = (idx: number) => {
+  const playFrom = (idx: number) => {
     if (idx >= ALPHABET.length) {
       setIsPlayingAll(false);
       setPlayingId(null);
@@ -41,23 +49,21 @@ export function AlphabetGrid() {
     const letter = ALPHABET[idx];
     setPlayingId(letter.id);
     speak(letter.ttsPhrase);
-    playAllRef.current = setTimeout(() => {
-      playNext(idx + 1);
-    }, 1600);
+    playAllTimer.current = setTimeout(() => playFrom(idx + 1), TIMING.playAllStep);
+  };
+
+  const startPlayAll = () => {
+    clearPlayAllTimer();
+    setIsPlayingAll(true);
+    playFrom(0);
   };
 
   const stopPlayAll = () => {
-    if (playAllRef.current) clearTimeout(playAllRef.current);
+    clearPlayAllTimer();
     setIsPlayingAll(false);
     setPlayingId(null);
-    window.speechSynthesis?.cancel();
+    stop();
   };
-
-  useEffect(() => {
-    return () => {
-      if (playAllRef.current) clearTimeout(playAllRef.current);
-    };
-  }, []);
 
   return (
     <div>
@@ -81,7 +87,7 @@ export function AlphabetGrid() {
             <LetterCard
               letter={letter}
               isPlaying={playingId === letter.id}
-              onClick={() => handleLetterTap(letter.id, letter.ttsPhrase)}
+              onClick={() => handleLetterTap(letter)}
             />
           </motion.div>
         ))}
@@ -92,17 +98,17 @@ export function AlphabetGrid() {
           <BigButton
             onClick={stopPlayAll}
             className="bg-red-400 text-white hover:bg-red-300"
-            aria-label="עצור"
+            aria-label={STRINGS.stop}
           >
-            ⏹ עצור
+            ⏹ {STRINGS.stop}
           </BigButton>
         ) : (
           <BigButton
             onClick={startPlayAll}
             className="bg-blue-400 text-white hover:bg-blue-300"
-            aria-label="נגן את כל האותיות"
+            aria-label={STRINGS.playAllLabel}
           >
-            ▶ נגן הכל
+            ▶ {STRINGS.playAll}
           </BigButton>
         )}
       </div>
