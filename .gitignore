@@ -37,3 +37,8 @@ next-env.d.ts
 
 # Claude Code
 .claude/
+
+# all env files (keep an example if one is ever added)
+.env
+.env.*
+!.env.example
